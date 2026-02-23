@@ -1,0 +1,5 @@
+{
+  "name": "Student Schedule App",
+  "description": "Smart schedule management for students with adaptive UI based on grade level.",
+  "requestFramePermissions": []
+}
