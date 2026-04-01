@@ -1,20 +1,102 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Student Timetable
 
-# Run and deploy your AI Studio app
+Ứng dụng web giúp học sinh quản lý thời khóa biểu, lịch học cá nhân và theo dõi kế hoạch học tập theo tuần/tháng.
 
-This contains everything you need to run your app locally.
+## Tính năng chính
 
-View your app in AI Studio: https://ai.studio/apps/5feec83b-b12c-41c3-9389-bd2c488eb35e
+- 🔐 **Đăng ký / đăng nhập** bằng Supabase Authentication.
+- 🗓️ **Xem lịch học theo Calendar hoặc Grid** (dễ nhìn trên cả desktop và mobile).
+- ➕ **Thêm, sửa, xóa lịch cá nhân** bằng modal trực quan.
+- ✋ **Kéo-thả / thay đổi thời lượng sự kiện** trong lịch.
+- ⚡ **Realtime đồng bộ dữ liệu** từ Supabase.
+- 🎨 **Gắn màu sắc, icon, ghi chú** cho từng lịch học.
+- 🧒 **Tối ưu giao diện theo cấp lớp** (tiểu học và các cấp còn lại).
 
-## Run Locally
+## Công nghệ sử dụng
 
-**Prerequisites:**  Node.js
+- **Frontend:** React + TypeScript + Vite
+- **UI:** Tailwind CSS, Lucide Icons, Sonner
+- **Calendar:** react-big-calendar + date-fns
+- **Backend (BaaS):** Supabase (Auth, Postgres, Realtime)
 
+## Yêu cầu môi trường
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- Node.js `>= 18`
+- npm `>= 9`
+- Một project Supabase đã tạo sẵn
+
+## Cài đặt nhanh
+
+1. Cài dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Tạo file môi trường:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Cập nhật biến môi trường trong `.env`:
+
+   ```env
+   VITE_SUPABASE_URL="https://<your-project-ref>.supabase.co"
+   VITE_SUPABASE_ANON_KEY="<your-anon-key>"
+   ```
+
+4. Khởi tạo database trên Supabase:
+
+   - Mở **Supabase Dashboard → SQL Editor**.
+   - Chạy toàn bộ nội dung trong file `supabase-schema.sql`.
+
+5. Chạy ứng dụng local:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Mở trình duyệt tại:
+
+   ```
+   http://localhost:3000
+   ```
+
+## Scripts
+
+- `npm run dev` – Chạy môi trường phát triển.
+- `npm run build` – Build production.
+- `npm run preview` – Preview bản build.
+- `npm run lint` – Type-check bằng TypeScript (`tsc --noEmit`).
+- `npm run clean` – Xóa thư mục build `dist`.
+
+## Cấu trúc thư mục chính
+
+```text
+.
+├── src/
+│   ├── components/
+│   │   ├── Auth.tsx
+│   │   ├── CalendarView.tsx
+│   │   └── TaskModal.tsx
+│   ├── lib/
+│   │   ├── supabase.ts
+│   │   └── utils.ts
+│   ├── types/
+│   │   └── supabase.ts
+│   ├── App.tsx
+│   └── main.tsx
+├── supabase-schema.sql
+└── README.md
+```
+
+## Lưu ý khi triển khai
+
+- Bảo đảm đã cấu hình đúng `VITE_SUPABASE_URL` và `VITE_SUPABASE_ANON_KEY` trong môi trường deploy.
+- Không commit key nhạy cảm vào repository.
+- Nếu đăng ký mới nhưng chưa có profile, ứng dụng đã có cơ chế tự tạo profile mặc định.
+
+---
+
+Nếu bạn muốn, mình có thể viết thêm phần **“Hướng dẫn deploy lên Vercel/Netlify + Supabase”** ngay trong README.
